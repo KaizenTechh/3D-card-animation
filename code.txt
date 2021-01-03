@@ -1,0 +1,56 @@
+CSS
+
+<style>
+.Replace{
+backdrop-filter: blur( 12.5px );
+-webkit-backdrop-filter: blur( 12.5px );
+}
+</style>
+
+
+
+JS Library
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+
+
+
+JS
+
+<script>
+VanillaTilt.init(document.querySelector(".Replace"), {
+		max: 8,
+		speed: 600
+	});
+</script>
+<script>
+$(function() {
+		
+			var originalBGplaypen = $(".Replace").css("background-color"),
+			    x, y, xy, bgWebKit, bgMoz, 
+			    lightColor = "rgba(255,255,255,0.35)",
+			    gradientSize = 400;
+					
+				// Basic Demo
+				$('.Replace').mousemove(function(e) {
+				
+					x  = e.pageX - this.offsetLeft;
+					y  = e.pageY - this.offsetTop;
+					xy = x + " " + y;
+					   
+					bgWebKit = "-webkit-gradient(radial, " + xy + ", 0, " + xy + ", " + gradientSize + ", from(" + lightColor + "), to(rgba(255,255,255,0.0))), " + originalBGplaypen;
+					bgMoz    = "-moz-radial-gradient(" + x + "px " + y + "px 60deg, circle, " + lightColor + " 0%, " + originalBGplaypen + " " + gradientSize + "px)";
+										
+					$(this)
+						.css({ background: bgWebKit })
+						.css({ background: bgMoz });
+					
+				}).mouseleave(function() {			
+					$(this).css({ background: originalBGplaypen });
+				});
+				
+		});
+</script>
+
